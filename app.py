@@ -1,6 +1,6 @@
 import os
 import json
-from flask import Flask, render_template
+from flask import Flask, render_template, request, flash
 from datetime import datetime
 
 app = Flask(__name__)
@@ -31,8 +31,20 @@ def about_member(member_name):
     return render_template("member.html", member=member)
 
 
-@app.route("/contact/")
+@app.route("/contact/", methods=["GET", "POST"])
 def contact():
+    if request.method == "POST":
+        try:
+            form_name_value = request.form["name"]
+        except KeyError as e:
+            return str(e)
+        else:
+            flash(
+                "Thanks {}, we have received your message".format(
+                    form_name_value
+                ),
+                category="success",
+            )
     return render_template("contact.html", page_title="Contact")
 
 
