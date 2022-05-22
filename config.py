@@ -13,8 +13,6 @@ class Config:
     """Base config"""
 
     SECRET_KEY = environ.get("SECRET_KEY")
-    HOST = (environ.get("IP", "0.0.0.0"),)
-    PORT = (int(environ.get("PORT", "5000")),)
 
 
 class ProdConfig(Config):
