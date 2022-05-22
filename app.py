@@ -60,4 +60,7 @@ def hello_there(name=None):
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(
+        host=os.environ.get("IP", "0.0.0.0"),
+        port=int(os.environ.get("PORT", "5000")),
+    )
